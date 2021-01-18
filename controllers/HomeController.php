@@ -3,10 +3,12 @@ class HomeController extends Controller
 {
   public function index()
   {
+
     $datas = array(
-      "title" => "",
+      "title" => "Login"
     );
 
     $this->render("home", $datas);
   }
+  
 }

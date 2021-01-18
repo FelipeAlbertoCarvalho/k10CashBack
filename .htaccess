@@ -1,4 +1,4 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ / nameFolder /index.php?url=$1 [QSA]
+RewriteRule ^(.*)$ /k10-main/index.php?url=$1 [QSA]
