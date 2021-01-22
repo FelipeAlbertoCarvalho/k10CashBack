@@ -1,6 +1,6 @@
 <?php
 
-class LoginModel extends Mysql {
+class loginModel extends Mysql {
   protected $email;
   protected $senha;
   
@@ -22,7 +22,7 @@ class LoginModel extends Mysql {
     }
   }
   
-  public function getLoginCliente()
+  public function getLoginLoja()
   {
     $sql = "SELECT * 
             FROM loja
