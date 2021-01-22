@@ -2,8 +2,14 @@
 class LoginController extends Controller
 {
 
-  private $loja;
-  private $cliente;
+  //private $loja;
+  //private $cliente;
+  private $login;
+  
+  public function __constructor()
+  {
+    $this->login = new loginModel();
+  }
 
   public function index()
   {
@@ -17,11 +23,11 @@ class LoginController extends Controller
       
       if ($_POST['radiobutton'] == '1') //loja busca na tabela loja
       {
-        $this->loja = new lojaModel();
+        //$this->loja = new lojaModel();
         $this->loja->setEmail(($_POST['login']));
         $this->loja->setSenha(($_POST['password']));
 
-        if($this->loja->getLogin())
+        if($this->loja->getLoginLoja())
         {
           //login efetuado com sucesso chama a page da loja
           $this->render("loja", $datas);
@@ -36,11 +42,11 @@ class LoginController extends Controller
       else 
       {  //cliente, busca na tabela cliente
         
-        $this->cliente = new clienteModel();
-        $this->cliente->setEmail(($_POST['login']));
-        $this->cliente->setSenha(($_POST['password']));
+        //$this->cliente = new clienteModel();
+        $this->login->setEmail(($_POST['login']));
+        $this->login->setSenha(($_POST['password']));
 
-        if($this->cliente->getLogin())
+        if($this->login->getLoginCliente())
         {
           //login efetuado com sucesso chama a page do cliente
           $this->render("cliente", $datas);
