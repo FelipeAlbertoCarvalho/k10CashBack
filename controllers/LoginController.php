@@ -5,7 +5,6 @@ class LoginController extends Controller
   private $loginLoja;
   private $loginCliente;
 
-  
   public function index()
   {
 
@@ -37,19 +36,11 @@ class LoginController extends Controller
       else 
       {  //cliente, busca na tabela cliente
         
-<<<<<<< HEAD
         $this->loginCliente = new loginModel();
         $this->loginCliente->setEmail(($_POST['login']));
         $this->loginCliente->setSenha(($_POST['password']));
 
         if($this->loginCliente->getLoginCliente())
-=======
-        //$this->cliente = new clienteModel();
-        $this->login->setEmail(($_POST['login']));
-        $this->login->setSenha(($_POST['password']));
-
-        if($this->login->getLoginCliente())
->>>>>>> a6c1b18dd4e8ca9a874ba04a879f14e1e055c92a
         {
           //login efetuado com sucesso chama a page do cliente
           $this->render("cliente", $datas);
