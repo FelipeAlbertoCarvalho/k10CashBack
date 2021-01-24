@@ -37,23 +37,7 @@ class clienteModel extends Mysql
     }
   }
 
-  public function getLogin()
-  {
-    $sql = "SELECT * 
-            FROM cliente
-            WHERE email='{$this->getEmail()}'
-            AND senha='{$this->getSenha()}'";
 
-    $sql = $this->conn->query($sql);
-
-    if ($sql->rowCount() > 0) {
-      $sql = $sql->fetch();
-      $_SESSION['id_cliente'] = $sql['id'];
-      return true;
-    } else {
-      return false;
-    }
-  }
 
   public function deletarCliente($id)
   {

@@ -35,34 +35,6 @@ class lojaModel extends Mysql
     }
   }
 
-  public function isLogged()
-  {
-    if (isset($_SESSION['nivel']) && !empty($_SESSION['nivel'])) {
-      return true;
-    } else {
-      return false;
-    }
-  
-  }
-
-  public function getLogin()
-  {
-    $sql = "SELECT * 
-            FROM loja
-            WHERE email='{$this->getEmail()}'
-            AND senha='{$this->getSenha()}'";
-
-    $sql = $this->conn->query($sql);
-
-    if ($sql->rowCount() > 0) {
-      $sql = $sql->fetch();
-      $_SESSION['id_loja'] = $sql['id'];
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   public function deletarLoja($id)
   {
     $sql = "DELETE FROM loja WHERE id = {$id};";
