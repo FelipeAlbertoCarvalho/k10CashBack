@@ -10,6 +10,7 @@ class clienteModel extends Mysql
   public $nome_equipe;
   public $email;
   public $senha;
+  public $url_img_cliente;
 
   public function __construct()
   {
@@ -18,8 +19,8 @@ class clienteModel extends Mysql
 
   public function inserirUsuario()
   {
-    $sql = "INSERT INTO cliente (nome, rg, cpf, nascimento, nome_equipe, email, senha)
-            VALUES(?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO cliente (nome, rg, cpf, nascimento, nome_equipe, email, senha, url_img_cliente)
+            VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $this->conn->prepare($sql);
     $stmt->bindValue(1, $this->getNome(), PDO::PARAM_STR);
@@ -29,7 +30,8 @@ class clienteModel extends Mysql
     $stmt->bindValue(5, $this->getNomeEquipe());
     $stmt->bindValue(6, $this->getEmail(), PDO::PARAM_STR);
     $stmt->bindValue(7, $this->getSenha());
-    
+    $stmt->bindValue(7, $this->getUrlImgCliente());
+
     if($stmt->execute()){
       return 1;
     } else {
@@ -182,5 +184,12 @@ class clienteModel extends Mysql
     return md5($this->senha);
   }
 
+  public function setUrlImgCliente($url_img_cliente){
+    $this->url_img_loja = md5(time() . rand(0, 999) . $url_img_cliente . ".jpg");
+  }
+
+  public function getUrlImgCliente(){
+    return $this->url_img_loja;
+  }
 
 }

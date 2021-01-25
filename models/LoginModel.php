@@ -59,6 +59,43 @@ class loginModel extends Mysql {
     }
   }
   
+  public function isAdminLogged()
+  {
+    if(isset($_SESSION['id_admin'])) //se já estiver logado
+    {
+      return true;
+    }
+    else 
+    {
+      return false;
+    } 
+  }
+
+  public function isLojaLogged()
+  {
+    if(isset($_SESSION['id_loja'])) //se já estiver logado
+    {
+      return true;
+    }
+    else 
+    {
+      return false;
+    }    
+  }
+
+  public function isClienteLogged()
+  {
+    if(isset($_SESSION['id_cliente'])) //se já estiver logado
+    {
+      return true;
+    }
+    else 
+    {
+      return false;
+    }    
+  }
+
+
   public function getEmail() {
     return $this->email;
   }

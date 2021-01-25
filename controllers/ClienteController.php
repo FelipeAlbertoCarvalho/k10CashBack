@@ -10,5 +10,7 @@ class ClienteController extends Controller
 
     $this->render("cliente", $datas);
   }
+ 
   
+
 }

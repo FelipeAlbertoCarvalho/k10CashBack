@@ -9,6 +9,7 @@ class lojaModel extends Mysql
   public $valor_cashback;
   public $email;
   public $senha;
+  public $url_img_loja;
 
   public function __construct()
   {
@@ -17,8 +18,8 @@ class lojaModel extends Mysql
 
   public function inserirLoja()
   {
-    $sql = "INSERT INTO loja (nome_responsavel, cnpj, nome_loja, valor_cashback, email, senha)
-            VALUES(?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO loja (nome_responsavel, cnpj, nome_loja, valor_cashback, email, senha, url_img_loja)
+            VALUES(?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $this->conn->prepare($sql);
     $stmt->bindValue(1, $this->getNomeResponsavel(), PDO::PARAM_STR);
@@ -27,6 +28,7 @@ class lojaModel extends Mysql
     $stmt->bindValue(4, $this->getValorCashback());
     $stmt->bindValue(5, $this->getEmail(), PDO::PARAM_STR);
     $stmt->bindValue(6, $this->getSenha());
+    $stmt->bindValue(7, $this->getUrlImgLoja());
     
     if($stmt->execute()){
       return 1;
@@ -166,6 +168,14 @@ class lojaModel extends Mysql
   public function setSenha($senha)
   {
     $this->senha = $senha;
+  }
+
+  public function setUrlImgLoja($url_img_loja){
+    $this->url_img_loja = md5(time() . rand(0, 999) . $url_img_loja . ".jpg");
+  }
+
+  public function getUrlImgLoja(){
+    return $this->url_img_loja;
   }
 
 }
