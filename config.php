@@ -5,7 +5,7 @@ global $config;
 $config = array();
 
 if (ENV == "dev") {
-  define("BASE_URL", "");
+  define("BASE_URL", "http://localhost/k10-main/");
   $config["dbname"] = "k10_cashback";
   $config["dbhost"] = "localhost";
   $config["dbuser"] = "root";

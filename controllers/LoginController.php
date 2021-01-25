@@ -4,6 +4,7 @@ class LoginController extends Controller
 
   private $loginLoja;
   private $loginCliente;
+  private $loginAdmin;
 
   public function index()
   {
@@ -59,4 +60,31 @@ class LoginController extends Controller
 
   }
   
+  public function admin()
+  {
+    $this->loginAdmin = new loginModel();
+    $this->loginAdmin->setEmail(($_POST['login']));
+    $this->loginAdmin->setSenha(($_POST['password']));
+
+    $datas = array(
+      "title" => "Administrador"
+    );
+
+    if($this->loginAdmin->getLoginAdmin())
+    {
+      //login efetuado com sucesso chama a page do admin
+      $this->render("admin", $datas);
+    } 
+    else 
+    {
+      //deu erro no login deve ir pra outro lugar
+      
+    }
+  }
+
+  public function validarLogin()  //recebe a pagina para redirecionar e o que retrnou do model
+  {
+
+  }
+
 }

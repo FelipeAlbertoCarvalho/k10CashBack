@@ -6,19 +6,26 @@ class Core
     $params = array();
     $url = "/";
     $url .= (!empty($_GET["url"])) ? $_GET["url"] : "";
-    if (!empty($url) && $url != "/") {
+    
+    if (!empty($url) && $url != "/") 
+    {
       $url = explode("/", $url);
       array_shift($url);
       $currentController = $url[0] . "Controller";
       array_shift($url);
-      if (isset($url[0]) && !empty($url[0])) {
+      if (isset($url[0]) && !empty($url[0])) 
+      {
         $currentAction = $url[0];
         array_shift($url);
-      } else {
+      } 
+      else 
+      {
         $currentAction = "index";
       }
       if (count($url) > 0) $params = $url;
-    } else {
+    } 
+    else 
+    {
       $currentController = "HomeController";
       $currentAction = "index";
     }
@@ -27,7 +34,7 @@ class Core
       $currentAction = "index";
     }
     $current = new $currentController();
-    if (method_exists($current, $currentAction)) $currentAction = "index";
+    if (!method_exists($current, $currentAction)) $currentAction = "index";
     call_user_func_array(array($current, $currentAction), $params);
   }
 }

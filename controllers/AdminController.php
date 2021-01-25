@@ -8,7 +8,7 @@ class AdminController extends Controller
       "title" => "Login Admin"
     );
 
-    $this->render("admin", $datas);
+    $this->render("adminLogin", $datas);
   }
   
 }

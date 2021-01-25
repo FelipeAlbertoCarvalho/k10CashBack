@@ -5,6 +5,24 @@ class loginModel extends Mysql {
   protected $email;
   protected $senha;
   
+  public function getLoginAdmin()
+  {
+    $sql = "SELECT * 
+            FROM admin
+            WHERE email='{$this->getEmail()}'
+            AND senha='{$this->getSenha()}'";
+
+    $sql = $this->conn->query($sql);
+
+    if ($sql->rowCount() > 0) {
+      $sql = $sql->fetch();
+      $_SESSION['id_admin'] = $sql['id'];
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public function getLoginCliente()
   {
     $sql = "SELECT * 

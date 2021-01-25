@@ -6,7 +6,7 @@ class HomeController extends Controller
 
     $datas = array(
       "title" => "Login"
-    );
+);
 
     $this->render("home", $datas);
   }
