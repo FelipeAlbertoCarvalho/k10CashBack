@@ -68,7 +68,7 @@ class loginModel extends Mysql {
   }
   
   public function setSenha($senha) {
-    $this->senha = $senha;
+    $this->senha = md5($senha);
   }
 
   public function getSenha() {

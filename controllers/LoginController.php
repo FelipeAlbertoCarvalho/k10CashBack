@@ -65,20 +65,20 @@ class LoginController extends Controller
     $this->loginAdmin = new loginModel();
     $this->loginAdmin->setEmail(($_POST['login']));
     $this->loginAdmin->setSenha(($_POST['password']));
-
+    
     $datas = array(
       "title" => "Administrador"
     );
 
     if($this->loginAdmin->getLoginAdmin())
-    {
+    { 
       //login efetuado com sucesso chama a page do admin
-      $this->render("admin", $datas);
+      header('Location: ' . BASE_URL . 'admin/home');
+      
     } 
     else 
-    {
+    { 
       //deu erro no login deve ir pra outro lugar
-      
     }
   }
 
