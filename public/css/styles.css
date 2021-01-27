@@ -35,7 +35,23 @@
   flex-direction: column;
 }
 
-.login input {
+.acesso-login {
+  display: block;
+  line-height: 30px;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.acesso-login input[type="radio"] {
+  cursor: pointer;
+}
+
+.acesso-login input[type="radio"] + input[type="radio"] {
+  margin-left: 32px;
+}
+
+.login input[type="text"],
+input[type="password"] {
   height: 40px;
   padding: 0 10px;
   margin: 0 0 10px;
