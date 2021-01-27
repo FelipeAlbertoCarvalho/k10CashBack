@@ -185,11 +185,11 @@ class clienteModel extends Mysql
   }
 
   public function setUrlImgCliente($url_img_cliente){
-    $this->url_img_loja = md5(time() . rand(0, 999) . $url_img_cliente . ".jpg");
+    $this->url_img_cliente = md5(time() . rand(0, 999) . $url_img_cliente . ".jpg");
   }
 
   public function getUrlImgCliente(){
-    return $this->url_img_loja;
+    return $this->url_img_cliente;
   }
 
 }

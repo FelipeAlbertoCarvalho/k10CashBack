@@ -1,14 +1,30 @@
 <?php
 class LojaController extends Controller
 {
+
+  private $login;
+
   public function index()
   {
-    
+
+    $this->login = new loginModel();
+
     $datas = array(
-      "title" => "Area Loja"
+      "title" => "Area Cliente"
     );
 
-    $this->render("loja", $datas);
+    if($this->login->isLojaLogged())
+    {
+      $this->render("loja", $datas);
+
+    } 
+    else 
+    {
+      header("Location:.$BASE_URL");
+    }
+
+    
+
   }
   
 }

@@ -9,6 +9,7 @@ class AdminController extends Controller
   
   public function index()
   {
+
     $this->login = new LoginModel();
 
     if($this->login->isAdminLogged()) //se já estiver logado
@@ -27,11 +28,22 @@ class AdminController extends Controller
 
   public function home()
   {
-    $datas = array(
-      "title" => "Administrador"
-    );
 
-    $this->render("admin", $datas);
+    $this->login = new LoginModel();
+
+    if($this->login->isAdminLogged()) //se já estiver logado
+    {
+      $datas = array(
+        "title" => "Administrador"
+      );
+
+      $this->render("admin", $datas);
+    }
+    else 
+    {
+      header("Location:.$BASE_URL./admin");
+    }
+
   }
 
 
