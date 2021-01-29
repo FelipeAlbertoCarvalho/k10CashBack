@@ -17,6 +17,7 @@ class loginModel extends Mysql {
     if ($sql->rowCount() > 0) {
       $sql = $sql->fetch();
       $_SESSION['id_admin'] = $sql['id'];
+      $_SESSION['login'] = true;
       return true;
     } else {
       return false;

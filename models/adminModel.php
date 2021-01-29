@@ -18,6 +18,19 @@ class adminModel extends Mysql
     parent::__construct();
   }
 
+  public function getInfoAdmin($id)
+  {
+    $sql = "SELECT * FROM admin WHERE id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindValue(1, $id);
+    $stmt->execute();
+
+    if ($stmt->rowCount() == 0) {
+      return;
+    }
+    return $stmt->fetch();
+  }
+
   public function cadastrarAdmin()
   {
     $sql = "INSERT INTO admin (nome, email, senha)
@@ -33,8 +46,8 @@ class adminModel extends Mysql
     */
     $stmt->bindValue(2, $this->getEmail(), PDO::PARAM_STR);
     $stmt->bindValue(3, $this->getSenha());
-    
-    if($stmt->execute()){
+
+    if ($stmt->execute()) {
       return 1;
     } else {
       return 0;
@@ -78,7 +91,7 @@ class adminModel extends Mysql
 
   public function updateCliente($senhaAlterar)
   {
-    if($senhaAlterar){
+    if ($senhaAlterar) {
       $sql = "UPDATE admin 
               SET nome = :nome, email = :email, nascimento = :nascimento, senha = :senha
               WHERE id = :id";
@@ -125,7 +138,7 @@ class adminModel extends Mysql
   {
     return $this->nome;
   }
-/*
+  /*
   public function setRg($rg)
   {
     $this->rg = $rg;
@@ -175,7 +188,7 @@ class adminModel extends Mysql
   {
     return $this->email;
   }
-  
+
   public function setSenha($senha)
   {
     $this->senha = $senha;
@@ -185,6 +198,4 @@ class adminModel extends Mysql
   {
     return md5($this->senha);
   }
-
-
 }
