@@ -11,6 +11,10 @@ class cashbackModel extends Mysql
   private $data_compra;
   private $data_registro;
   private $inserido_por;
+  private $valor_recebido_do_lojista;
+  private $valor_pago_ao_cliente;
+  private $data_recebido_do_lojista;
+  private $data_pago_ao_cliente;
 
   public function __construct()
   {
@@ -45,10 +49,136 @@ class cashbackModel extends Mysql
     }
   }
 
-
-  public function getId()
+  public function getInfoCashback($id = null, $usuario = null)
   {
-    return $this->id;
+    if($usuario == 'loja')
+    {
+
+      $sql = "SELECT * FROM cashback WHERE id_loja = ?";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindValue(1, $id);
+      $stmt->execute();
+
+      if ($stmt->rowCount() == 0) {
+        return;
+      }
+      return $stmt->fetch();
+
+    } 
+    else if($usuario == 'cliente')
+    {
+
+      $sql = "SELECT * FROM cashback WHERE id_cliente = ?";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindValue(1, $id);
+      $stmt->execute();
+
+      if ($stmt->rowCount() == 0) {
+        return;
+      }
+      return $stmt->fetch();
+
+    } 
+    else if($usuario == 'admin')
+    {
+      $sql = "SELECT * FROM cashback";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+
+      if ($stmt->rowCount() == 0) {
+        return;
+      }
+      return $stmt->fetch();
+    }
+
+  }
+
+  public function getInfoCashbackWhere($id_loja = null, $id_cliente = null, $usuario = null)
+  {
+    if($usuario == 'loja')
+    {
+
+      $sql = "SELECT * FROM cashback WHERE id_loja = ? && id_cliente = ? &&  ";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindValue(1, $id_loja);
+      $stmt->bindValue(2, $id_cliente);
+      $stmt->execute();
+
+      if ($stmt->rowCount() == 0) {
+        return;
+      }
+      return $stmt->fetch();
+
+    } 
+    else if($usuario == 'cliente')
+    {
+
+      $sql = "SELECT * FROM cashback WHERE id_cliente = ?";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->bindValue(1, $id);
+      $stmt->execute();
+
+      if ($stmt->rowCount() == 0) {
+        return;
+      }
+      return $stmt->fetch();
+
+    } 
+    else if($usuario == 'admin')
+    {
+      $sql = "SELECT * FROM cashback";
+      $stmt = $this->conn->prepare($sql);
+      $stmt->execute();
+
+      if ($stmt->rowCount() == 0) {
+        return;
+      }
+      return $stmt->fetch();
+    }
+  }
+
+  public function inserirValorRecebidoDoLojista()
+  {//vou ter que inserir nas duas tuplas , no do lojista e do cliente
+
+    $sql = "UPDATE cashback
+            SET valor_recebido_do_lojista = ?, data_recebido_do_lojista = ?
+            WHERE id = ? && id_loja = ? && inserido_por = ?";
+
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindValue(1, $this->getValorRecebidoDoLojista(), PDO::PARAM_STR);
+    $stmt->bindValue(2, $this->getDataRecebidoDoLojista(), PDO::PARAM_STR);
+    $stmt->bindValue(3, $this->getId(), PDO::PARAM_STR);
+    $stmt->bindValue(4, $this->getIdLoja(), PDO::PARAM_STR);
+    $stmt->bindValue(5, $this->getInseridoPor(), PDO::PARAM_STR);
+
+    if($stmt->execute()){
+
+      return 1;
+
+    } else {
+      return 0;
+    }
+  }
+
+  public function inserirValorPagoAoCliente()
+  {//vou ter que inserir nas duas tuplas , no do lojista e do cliente
+
+    $sql = "UPDATE cashback
+            SET valor_pago_ao_cliente = ?, data_pago_ao_cliente = ?
+            WHERE id = ?";
+
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindValue(1, $this->getValorPagoAoCliente(), PDO::PARAM_STR);
+    $stmt->bindValue(2, $this->getDataPagoAoCliente(), PDO::PARAM_STR);
+    $stmt->bindValue(3, $this->getId(), PDO::PARAM_STR);
+
+    if($stmt->execute()){
+
+      return 1;
+
+    } else {
+      return 0;
+    }
   }
 
   public function setId($id)
@@ -56,6 +186,11 @@ class cashbackModel extends Mysql
     $this->id = $id;
   }
 
+  public function getId()
+  {
+    return $this->id;
+  }
+  
   public function setIdLoja($id_loja)
   {
     $this->id_loja = $id_loja;
@@ -132,6 +267,46 @@ class cashbackModel extends Mysql
   public function getInseridoPor()
   {
     return $this->inserido_por;
+  }
+
+  public function setValorRecebidoDoLojista($valor_recebido_do_lojista)
+  {
+    $this->valor_recebido_do_lojista = $valor_recebido_do_lojista;
+  }
+
+  public function getValorRecebidoDoLojista()
+  {
+    return $this->valor_recebido_do_lojista;
+  }
+
+  public function setValorPagoAoCliente($valor_pago_ao_cliente)
+  {
+    $this->valor_pago_ao_cliente = $valor_pago_ao_cliente;
+  }
+
+  public function getValorPagoAoCliente()
+  {
+    return $this->valor_pago_ao_cliente;
+  }
+
+  public function setDataRecebidoDoLojista($data_recebido_do_lojista)
+  {
+    $this->data_recebido_do_lojista = $data_recebido_do_lojista;
+  }
+
+  public function getDataRecebidoDoLojista()
+  {
+    return $this->data_recebido_do_lojista;
+  }
+
+  public function setDataPagoAoCliente($data_pago_ao_cliente)
+  {
+    $this->data_pago_ao_cliente = $data_pago_ao_cliente;
+  }
+
+  public function getDataPagoAoCliente()
+  {
+    return $this->data_pago_ao_cliente;
   }
 
 }

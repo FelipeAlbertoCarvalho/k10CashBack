@@ -39,7 +39,18 @@ class clienteModel extends Mysql
     }
   }
 
+  public function getInfoCliente($id)
+  {
+    $sql = "SELECT * FROM cliente WHERE id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindValue(1, $id);
+    $stmt->execute();
 
+    if ($stmt->rowCount() == 0) {
+      return;
+    }
+    return $stmt->fetch();
+  }
 
   public function deletarCliente($id)
   {

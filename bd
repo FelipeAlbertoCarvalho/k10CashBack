@@ -1,0 +1,76 @@
+Fazer banco de dados
+        FORMS CADASTRO
+  Formulario de Cadastro do Cashback Lojista/Cliente
+- escolher loja/cliente 
+- upload de foto do cupom fiscal
+- inserir valor do cupom fiscal
+- inserir data da compra
+
+Formulario de Cadastro Admin
+- inserir nome, rg, cpf, data de nascimento, nome do time, contato
+- escolher acesso: email, senha
+
+  Formulario de Cadastro Cliente
+- inserir nome, rg, cpf, data de nascimento, nome do time, contato
+- escolher acesso: email, senha
+
+  Formulario de Cadastro Lojista
+- inserir nome da loja, cnpj, responsável, contato
+- escolher acesso: email, senha
+
+  Formulario Resgate Cashback
+- inserir Cliente que está retirando
+- inserir data da retirada
+- inserir valor retirado
+
+          ADMIN
+  Requisitos funcionais
+1 - Cadastrar/Editar/Excluir Cliente/Lojista
+2 - Editar Cashbacks
+3 - Registrar Resgate(Cliente)/Entrada(Lojista) de Cashback
+4 - Mostrar Valor Devido ao total
+  4.1 - Mostrar Valor devido para cada cliente
+5 - Mostrar Valor que deve ser cobrado de cada loja
+  5.1 - Mostrar em um certo periodo
+6 - Mostrar Valor ja resgatado de todas as Lojas
+  6.1 - Mostrar valor resgatado de cada Loja
+
+          LOJISTA
+  Requisitos funcionais
+1 - fazer login no sistema
+2 - Registrar/apagar/editar Cashback
+    2.1 - 
+
+  Requisitos não-funcionais
+1 - mostrar saldo acumulado de Cashback
+  1.1 - por clientes
+2 - mostrar saldo devedor em um certo periodo
+3 - mostrar dois saldos, o que ele inseriu e o que a loja inseriu dele
+
+        CLIENTE
+1 - fazer login no sistema
+2 - Registrar/apagar/editar Cashback
+    2.1 - 
+
+  Requisitos não-funcionais
+1 - mostrar saldo acumulado de Cashback
+  1.1 - por clientes
+2 - mostrar saldo disponível em um certo periodo
+3 - mostrar saldo já usado e quanto tem disponível
+4 - mostrar dois saldos, o que ele inseriu e o que a loja inseriu dele
+
+TELA LOGIN
+
+quando eu clicar em logar eu tenho qeu direcionar para a pagina certa de acordo 
+com o nivel do usuario se for lojista ou cliente
+  Como fazer isso?
+na hora de eu cadastrar os clientes e lojistas eu tenho que decidir quem
+sera lojista ou cliente, no form de cadastro.
+
+Tabela USUARIO
+vai ter que colocar aqui o nivel de acesso ou o tipo de usuario
+dai posso colocar uma tabela de tipo_usuario onde vai ter os tipos de usuario
+* resumindo eu posso ou nao fazer relacionamento com tabela de usuario para nivel *
+valor do cashback daquela loja colocar no cadastro de lojista
+
+tabela lojista e tabela cliente

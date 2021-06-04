@@ -37,6 +37,19 @@ class lojaModel extends Mysql
     }
   }
 
+  public function getInfoLoja($id)
+  {
+    $sql = "SELECT * FROM loja WHERE id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindValue(1, $id);
+    $stmt->execute();
+
+    if ($stmt->rowCount() == 0) {
+      return;
+    }
+    return $stmt->fetch();
+  }
+
   public function deletarLoja($id)
   {
     $sql = "DELETE FROM loja WHERE id = {$id};";

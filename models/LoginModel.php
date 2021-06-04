@@ -18,6 +18,7 @@ class loginModel extends Mysql {
       $sql = $sql->fetch();
       $_SESSION['id_admin'] = $sql['id'];
       $_SESSION['login'] = true;
+      $_SESSION['usuario'] = 'admin';
       return true;
     } else {
       return false;
@@ -36,6 +37,7 @@ class loginModel extends Mysql {
     if ($sql->rowCount() > 0) {
       $sql = $sql->fetch();
       $_SESSION['id_cliente'] = $sql['id'];
+      $_SESSION['usuario'] = 'cliente';
       return true;
     } else {
       return false;
@@ -54,6 +56,7 @@ class loginModel extends Mysql {
     if ($sql->rowCount() > 0) {
       $sql = $sql->fetch();
       $_SESSION['id_loja'] = $sql['id'];
+      $_SESSION['usuario'] = 'loja';
       return true;
     } else {
       return false;
@@ -96,6 +99,17 @@ class loginModel extends Mysql {
     }    
   }
 
+  public function isLogged()
+  {
+    if(isset($_SESSION[''])) //se já estiver logado
+    {
+      return true;
+    }
+    else 
+    {
+      return false;
+    }    
+  }
 
   public function getEmail() {
     return $this->email;

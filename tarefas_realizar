@@ -1,0 +1,7 @@
+**************** TAREFAS ******************
+  
+  CONTROLLERS
+    * Cashback
+        - Fazer redirecionamentos em caso de sucesso ou não Loja e Cliente(CadastroCashback)
+        - Fazer cRUD cashback
+        - 
